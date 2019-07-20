@@ -1,5 +1,7 @@
 package com.fly.app.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,12 +9,11 @@ public class Tickets {
     @Id
     @GeneratedValue
     private Long id;
-
-    private Double valorTickete;
+    private Double valorTiquete;
 
     private Double ivaTiquete;
 
-    private Double descuentoTickete;
+    private Double descuentoTiquete;
 
     @ManyToOne
     @JoinColumn(name = "id_pasajero")
@@ -30,24 +31,20 @@ public class Tickets {
     }
 
 
-    protected boolean canEqual(final Object other) {
-        return other instanceof Tickets;
-    }
-
     public Long getId() {
         return this.id;
     }
 
-    public Double getValorTickete() {
-        return this.valorTickete;
+    public Double getValorTiquete() {
+        return this.valorTiquete;
     }
 
     public Double getIvaTiquete() {
         return this.ivaTiquete;
     }
 
-    public Double getDescuentoTickete() {
-        return this.descuentoTickete;
+    public Double getDescuentoTiquete() {
+        return this.descuentoTiquete;
     }
 
     public Passengers getPassengers() {
@@ -66,16 +63,17 @@ public class Tickets {
         this.id = id;
     }
 
-    public void setValorTickete(Double valorTickete) {
-        this.valorTickete = valorTickete;
+    public void setValorTiquete(Double valorTiquete) {
+        this.valorTiquete = valorTiquete;
     }
 
     public void setIvaTiquete(Double ivaTiquete) {
         this.ivaTiquete = ivaTiquete;
     }
 
-    public void setDescuentoTickete(Double descuentoTickete) {
-        this.descuentoTickete = descuentoTickete;
+
+    public void setDescuentoTiquete(Double descuentoTiquete) {
+        this.descuentoTiquete = descuentoTiquete;
     }
 
     public void setPassengers(Passengers passengers) {
@@ -98,17 +96,17 @@ public class Tickets {
         final Object this$id = this.getId();
         final Object other$id = other.getId();
         if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
-        final Object this$valorTickete = this.getValorTickete();
-        final Object other$valorTickete = other.getValorTickete();
-        if (this$valorTickete == null ? other$valorTickete != null : !this$valorTickete.equals(other$valorTickete))
+        final Object this$valorTiquete = this.getValorTiquete();
+        final Object other$valorTiquete = other.getValorTiquete();
+        if (this$valorTiquete == null ? other$valorTiquete != null : !this$valorTiquete.equals(other$valorTiquete))
             return false;
         final Object this$ivaTiquete = this.getIvaTiquete();
         final Object other$ivaTiquete = other.getIvaTiquete();
         if (this$ivaTiquete == null ? other$ivaTiquete != null : !this$ivaTiquete.equals(other$ivaTiquete))
             return false;
-        final Object this$descuentoTickete = this.getDescuentoTickete();
-        final Object other$descuentoTickete = other.getDescuentoTickete();
-        if (this$descuentoTickete == null ? other$descuentoTickete != null : !this$descuentoTickete.equals(other$descuentoTickete))
+        final Object this$descuentoTiquete = this.getDescuentoTiquete();
+        final Object other$descuentoTiquete = other.getDescuentoTiquete();
+        if (this$descuentoTiquete == null ? other$descuentoTiquete != null : !this$descuentoTiquete.equals(other$descuentoTiquete))
             return false;
         final Object this$passengers = this.getPassengers();
         final Object other$passengers = other.getPassengers();
@@ -123,17 +121,21 @@ public class Tickets {
         return true;
     }
 
+    protected boolean canEqual(final Object other) {
+        return other instanceof Tickets;
+    }
+
     public int hashCode() {
         final int PRIME = 59;
         int result = 1;
         final Object $id = this.getId();
         result = result * PRIME + ($id == null ? 43 : $id.hashCode());
-        final Object $valorTickete = this.getValorTickete();
-        result = result * PRIME + ($valorTickete == null ? 43 : $valorTickete.hashCode());
+        final Object $valorTiquete = this.getValorTiquete();
+        result = result * PRIME + ($valorTiquete == null ? 43 : $valorTiquete.hashCode());
         final Object $ivaTiquete = this.getIvaTiquete();
         result = result * PRIME + ($ivaTiquete == null ? 43 : $ivaTiquete.hashCode());
-        final Object $descuentoTickete = this.getDescuentoTickete();
-        result = result * PRIME + ($descuentoTickete == null ? 43 : $descuentoTickete.hashCode());
+        final Object $descuentoTiquete = this.getDescuentoTiquete();
+        result = result * PRIME + ($descuentoTiquete == null ? 43 : $descuentoTiquete.hashCode());
         final Object $passengers = this.getPassengers();
         result = result * PRIME + ($passengers == null ? 43 : $passengers.hashCode());
         final Object $flights = this.getFlights();
@@ -144,6 +146,6 @@ public class Tickets {
     }
 
     public String toString() {
-        return "Tickets(id=" + this.getId() + ", valorTickete=" + this.getValorTickete() + ", ivaTiquete=" + this.getIvaTiquete() + ", descuentoTickete=" + this.getDescuentoTickete() + ", passengers=" + this.getPassengers() + ", flights=" + this.getFlights() + ", airplanes=" + this.getAirplanes() + ")";
+        return "Tickets(id=" + this.getId() + ", valorTiquete=" + this.getValorTiquete() + ", ivaTiquete=" + this.getIvaTiquete() + ", descuentoTiquete=" + this.getDescuentoTiquete() + ", passengers=" + this.getPassengers() + ", flights=" + this.getFlights() + ", airplanes=" + this.getAirplanes() + ")";
     }
 }

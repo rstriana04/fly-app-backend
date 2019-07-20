@@ -1,5 +1,10 @@
 package com.fly.app.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,8 +17,6 @@ public class Passengers {
     @Id
     @GeneratedValue
     private Long id;
-
-
     @OneToMany(mappedBy = "passengers")
     private List<Tickets> ticketsList;
 
@@ -33,6 +36,7 @@ public class Passengers {
         return this.id;
     }
 
+    @JsonIgnore
     public List<Tickets> getTicketsList() {
         return this.ticketsList;
     }
@@ -49,6 +53,7 @@ public class Passengers {
         this.id = id;
     }
 
+    @JsonIgnore
     public void setTicketsList(List<Tickets> ticketsList) {
         this.ticketsList = ticketsList;
     }
