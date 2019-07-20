@@ -13,6 +13,7 @@ import java.util.Optional;
 @RestController
 @Slf4j
 @RequestMapping("/api/v1/passengers")
+@CrossOrigin("http://localhost:4200")
 public class PassengersController {
 
     @Autowired
@@ -38,11 +39,12 @@ public class PassengersController {
                 return null;
             }
             passengers.setId(passengers.getId());
-            passengersService.save(passengers);
+            Passengers passengersSaved = passengersService.save(passengers);
+            return passengersSaved;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return passengers;
+        return null;
     }
 
     @GetMapping
