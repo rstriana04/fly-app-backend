@@ -1,9 +1,6 @@
 package com.fly.app.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

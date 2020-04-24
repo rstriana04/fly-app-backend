@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/airplanes")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:4300")
 public class AirplanesController {
     @Autowired
     private AirplanesService airplanesService;

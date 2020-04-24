@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="fly-app-backend" default="all">
+  
+  
+  <property file="fly-app-backend.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.ear"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
+    <include name="*.klib"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.11" value="${jdk.home.11}/bin"/>
+  <path id="jdk.classpath.11">
+    <fileset dir="${jdk.home.11}">
+      <include name="../java-11-oracle!/java.base"/>
+      <include name="../java-11-oracle!/java.compiler"/>
+      <include name="../java-11-oracle!/java.datatransfer"/>
+      <include name="../java-11-oracle!/java.desktop"/>
+      <include name="../java-11-oracle!/java.instrument"/>
+      <include name="../java-11-oracle!/java.logging"/>
+      <include name="../java-11-oracle!/java.management"/>
+      <include name="../java-11-oracle!/java.management.rmi"/>
+      <include name="../java-11-oracle!/java.naming"/>
+      <include name="../java-11-oracle!/java.net.http"/>
+      <include name="../java-11-oracle!/java.prefs"/>
+      <include name="../java-11-oracle!/java.rmi"/>
+      <include name="../java-11-oracle!/java.scripting"/>
+      <include name="../java-11-oracle!/java.se"/>
+      <include name="../java-11-oracle!/java.security.jgss"/>
+      <include name="../java-11-oracle!/java.security.sasl"/>
+      <include name="../java-11-oracle!/java.smartcardio"/>
+      <include name="../java-11-oracle!/java.sql"/>
+      <include name="../java-11-oracle!/java.sql.rowset"/>
+      <include name="../java-11-oracle!/java.transaction.xa"/>
+      <include name="../java-11-oracle!/java.xml"/>
+      <include name="../java-11-oracle!/java.xml.crypto"/>
+      <include name="../java-11-oracle!/jdk.accessibility"/>
+      <include name="../java-11-oracle!/jdk.aot"/>
+      <include name="../java-11-oracle!/jdk.attach"/>
+      <include name="../java-11-oracle!/jdk.charsets"/>
+      <include name="../java-11-oracle!/jdk.compiler"/>
+      <include name="../java-11-oracle!/jdk.crypto.cryptoki"/>
+      <include name="../java-11-oracle!/jdk.crypto.ec"/>
+      <include name="../java-11-oracle!/jdk.dynalink"/>
+      <include name="../java-11-oracle!/jdk.editpad"/>
+      <include name="../java-11-oracle!/jdk.hotspot.agent"/>
+      <include name="../java-11-oracle!/jdk.httpserver"/>
+      <include name="../java-11-oracle!/jdk.internal.ed"/>
+      <include name="../java-11-oracle!/jdk.internal.jvmstat"/>
+      <include name="../java-11-oracle!/jdk.internal.le"/>
+      <include name="../java-11-oracle!/jdk.internal.opt"/>
+      <include name="../java-11-oracle!/jdk.internal.vm.ci"/>
+      <include name="../java-11-oracle!/jdk.internal.vm.compiler"/>
+      <include name="../java-11-oracle!/jdk.internal.vm.compiler.management"/>
+      <include name="../java-11-oracle!/jdk.jartool"/>
+      <include name="../java-11-oracle!/jdk.javadoc"/>
+      <include name="../java-11-oracle!/jdk.jcmd"/>
+      <include name="../java-11-oracle!/jdk.jconsole"/>
+      <include name="../java-11-oracle!/jdk.jdeps"/>
+      <include name="../java-11-oracle!/jdk.jdi"/>
+      <include name="../java-11-oracle!/jdk.jdwp.agent"/>
+      <include name="../java-11-oracle!/jdk.jfr"/>
+      <include name="../java-11-oracle!/jdk.jlink"/>
+      <include name="../java-11-oracle!/jdk.jshell"/>
+      <include name="../java-11-oracle!/jdk.jsobject"/>
+      <include name="../java-11-oracle!/jdk.jstatd"/>
+      <include name="../java-11-oracle!/jdk.localedata"/>
+      <include name="../java-11-oracle!/jdk.management"/>
+      <include name="../java-11-oracle!/jdk.management.agent"/>
+      <include name="../java-11-oracle!/jdk.management.jfr"/>
+      <include name="../java-11-oracle!/jdk.naming.dns"/>
+      <include name="../java-11-oracle!/jdk.naming.rmi"/>
+      <include name="../java-11-oracle!/jdk.net"/>
+      <include name="../java-11-oracle!/jdk.pack"/>
+      <include name="../java-11-oracle!/jdk.rmic"/>
+      <include name="../java-11-oracle!/jdk.scripting.nashorn"/>
+      <include name="../java-11-oracle!/jdk.scripting.nashorn.shell"/>
+      <include name="../java-11-oracle!/jdk.sctp"/>
+      <include name="../java-11-oracle!/jdk.security.auth"/>
+      <include name="../java-11-oracle!/jdk.security.jgss"/>
+      <include name="../java-11-oracle!/jdk.unsupported"/>
+      <include name="../java-11-oracle!/jdk.unsupported.desktop"/>
+      <include name="../java-11-oracle!/jdk.xml.dom"/>
+      <include name="../java-11-oracle!/jdk.zipfs"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.11}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.11}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.11"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.maven:_antlr:antlr:2.7.7.classpath">
+    <pathelement location="${path.variable.maven_repository}/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.core:jackson-core:2.9.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-core/2.9.9/jackson-core-2.9.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.9.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-databind/2.9.9/jackson-databind-2.9.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.9.9/jackson-datatype-jdk8-2.9.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.9.9/jackson-datatype-jsr310-2.9.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/module/jackson-module-parameter-names/2.9.9/jackson-module-parameter-names-2.9.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml:classmate:1.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/classmate/1.4.0/classmate-1.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.jayway.jsonpath:json-path:2.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.sun.xml.messaging.saaj:saaj-impl:1.5.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/sun/xml/messaging/saaj/saaj-impl/1.5.0/saaj-impl-1.5.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.vaadin.external.google:android-json:0.0.20131108.vaadin1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.zaxxer:hikaricp:3.2.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/zaxxer/HikariCP/3.2.0/HikariCP-3.2.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-io:commons-io:2.5.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-io/commons-io/2.5/commons-io-2.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.activation:javax.activation-api:1.2.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.annotation:javax.annotation-api:1.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.persistence:javax.persistence-api:2.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.servlet:javax.servlet-api:4.0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.transaction:javax.transaction-api:1.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/transaction/javax.transaction-api/1.3/javax.transaction-api-1.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.validation:validation-api:2.0.1.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.xml.bind:jaxb-api:2.3.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.xml.soap:javax.xml.soap-api:1.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/xml/soap/javax.xml.soap-api/1.4.0/javax.xml.soap-api-1.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.xml.ws:jaxws-api:2.3.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/xml/ws/jaxws-api/2.3.1/jaxws-api-2.3.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_junit:junit:4.12.classpath">
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.12/junit-4.12.jar"/>
+  </path>
+  
+  <path id="library.maven:_mysql:mysql-connector-java:8.0.16.classpath">
+    <pathelement location="${path.variable.maven_repository}/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.bytebuddy:byte-buddy-agent:1.9.13.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/bytebuddy/byte-buddy-agent/1.9.13/byte-buddy-agent-1.9.13.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.bytebuddy:byte-buddy:1.9.13.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/bytebuddy/byte-buddy/1.9.13/byte-buddy-1.9.13.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.minidev:accessors-smart:1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/minidev/accessors-smart/1.2/accessors-smart-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.minidev:json-smart:2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/minidev/json-smart/2.3/json-smart-2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.logging.log4j:log4j-api:2.11.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-api/2.11.2/log4j-api-2.11.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.logging.log4j:log4j-to-slf4j:2.11.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-to-slf4j/2.11.2/log4j-to-slf4j-2.11.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.tomcat.embed:tomcat-embed-core:9.0.21.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/tomcat/embed/tomcat-embed-core/9.0.21/tomcat-embed-core-9.0.21.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.tomcat.embed:tomcat-embed-el:9.0.21.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/tomcat/embed/tomcat-embed-el/9.0.21/tomcat-embed-el-9.0.21.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.tomcat.embed:tomcat-embed-websocket:9.0.21.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/tomcat/embed/tomcat-embed-websocket/9.0.21/tomcat-embed-websocket-9.0.21.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.aspectj:aspectjweaver:1.9.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.assertj:assertj-core:3.11.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.atteo:evo-inflector:1.2.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/atteo/evo-inflector/1.2.2/evo-inflector-1.2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.attoparser:attoparser:2.0.5.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/attoparser/attoparser/2.0.5.RELEASE/attoparser-2.0.5.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.dom4j:dom4j:2.1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/dom4j/dom4j/2.1.1/dom4j-2.1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hamcrest:hamcrest-library:1.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.common:hibernate-commons-annotations:5.0.4.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/common/hibernate-commons-annotations/5.0.4.Final/hibernate-commons-annotations-5.0.4.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.validator:hibernate-validator:6.0.17.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/validator/hibernate-validator/6.0.17.Final/hibernate-validator-6.0.17.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-core:5.3.10.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-core/5.3.10.Final/hibernate-core-5.3.10.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.javassist:javassist:3.23.2-ga.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/javassist/javassist/3.23.2-GA/javassist-3.23.2-GA.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss.logging:jboss-logging:3.3.2.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss:jandex:2.0.5.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jboss/jandex/2.0.5.Final/jandex-2.0.5.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jvnet.mimepull:mimepull:1.9.11.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jvnet/mimepull/mimepull/1.9.11/mimepull-1.9.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jvnet.staxex:stax-ex:1.8.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jvnet/staxex/stax-ex/1.8/stax-ex-1.8.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.mockito:mockito-core:2.23.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/mockito/mockito-core/2.23.4/mockito-core-2.23.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.objenesis:objenesis:2.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/objenesis/objenesis/2.6/objenesis-2.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.ow2.asm:asm:5.0.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.projectlombok:lombok:1.18.8.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/projectlombok/lombok/1.18.8/lombok-1.18.8.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.skyscreamer:jsonassert:1.5.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/skyscreamer/jsonassert/1.5.0/jsonassert-1.5.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:jul-to-slf4j:1.7.26.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/jul-to-slf4j/1.7.26/jul-to-slf4j-1.7.26.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-api:1.7.26.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.7.26/slf4j-api-1.7.26.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-autoconfigure:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-autoconfigure/2.1.6.RELEASE/spring-boot-autoconfigure-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-devtools:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-devtools/2.1.6.RELEASE/spring-boot-devtools-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-aop:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-aop/2.1.6.RELEASE/spring-boot-starter-aop-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-data-jpa:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-data-jpa/2.1.6.RELEASE/spring-boot-starter-data-jpa-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-data-rest:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-data-rest/2.1.6.RELEASE/spring-boot-starter-data-rest-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-jdbc:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-jdbc/2.1.6.RELEASE/spring-boot-starter-jdbc-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-json:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-json/2.1.6.RELEASE/spring-boot-starter-json-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-logging:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-logging/2.1.6.RELEASE/spring-boot-starter-logging-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-test:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-test/2.1.6.RELEASE/spring-boot-starter-test-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-thymeleaf:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-thymeleaf/2.1.6.RELEASE/spring-boot-starter-thymeleaf-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-tomcat:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-tomcat/2.1.6.RELEASE/spring-boot-starter-tomcat-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-web-services:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-web-services/2.1.6.RELEASE/spring-boot-starter-web-services-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter-web:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-web/2.1.6.RELEASE/spring-boot-starter-web-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-starter:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter/2.1.6.RELEASE/spring-boot-starter-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-test-autoconfigure:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-test-autoconfigure/2.1.6.RELEASE/spring-boot-test-autoconfigure-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot-test:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot-test/2.1.6.RELEASE/spring-boot-test-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.boot:spring-boot:2.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/boot/spring-boot/2.1.6.RELEASE/spring-boot-2.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.data:spring-data-commons:2.1.9.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/data/spring-data-commons/2.1.9.RELEASE/spring-data-commons-2.1.9.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.data:spring-data-jpa:2.1.9.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/data/spring-data-jpa/2.1.9.RELEASE/spring-data-jpa-2.1.9.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.data:spring-data-rest-core:3.1.9.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/data/spring-data-rest-core/3.1.9.RELEASE/spring-data-rest-core-3.1.9.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.data:spring-data-rest-webmvc:3.1.9.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/data/spring-data-rest-webmvc/3.1.9.RELEASE/spring-data-rest-webmvc-3.1.9.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.hateoas:spring-hateoas:0.25.1.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/hateoas/spring-hateoas/0.25.1.RELEASE/spring-hateoas-0.25.1.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.plugin:spring-plugin-core:1.2.0.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/plugin/spring-plugin-core/1.2.0.RELEASE/spring-plugin-core-1.2.0.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.restdocs:spring-restdocs-core:2.0.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/restdocs/spring-restdocs-core/2.0.3.RELEASE/spring-restdocs-core-2.0.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.restdocs:spring-restdocs-mockmvc:2.0.3.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/restdocs/spring-restdocs-mockmvc/2.0.3.RELEASE/spring-restdocs-mockmvc-2.0.3.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.ws:spring-ws-core:3.0.7.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/ws/spring-ws-core/3.0.7.RELEASE/spring-ws-core-3.0.7.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework.ws:spring-xml:3.0.7.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/ws/spring-xml/3.0.7.RELEASE/spring-xml-3.0.7.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-aop:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-aop/5.1.8.RELEASE/spring-aop-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-aspects:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-aspects/5.1.8.RELEASE/spring-aspects-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-beans:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-context:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-context/5.1.8.RELEASE/spring-context-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-core:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-core/5.1.8.RELEASE/spring-core-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-expression:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-expression/5.1.8.RELEASE/spring-expression-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-jcl:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-jcl/5.1.8.RELEASE/spring-jcl-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-jdbc:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-jdbc/5.1.8.RELEASE/spring-jdbc-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-orm:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-orm/5.1.8.RELEASE/spring-orm-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-oxm:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-oxm/5.1.8.RELEASE/spring-oxm-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-test:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-test/5.1.8.RELEASE/spring-test-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-tx:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-tx/5.1.8.RELEASE/spring-tx-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-web:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-web/5.1.8.RELEASE/spring-web-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-webmvc:5.1.8.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/thymeleaf/extras/thymeleaf-extras-java8time/3.0.4.RELEASE/thymeleaf-extras-java8time-3.0.4.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.thymeleaf:thymeleaf-spring5:3.0.11.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/thymeleaf/thymeleaf-spring5/3.0.11.RELEASE/thymeleaf-spring5-3.0.11.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.thymeleaf:thymeleaf:3.0.11.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/thymeleaf/thymeleaf/3.0.11.RELEASE/thymeleaf-3.0.11.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.unbescape:unbescape:1.1.6.release.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.xmlunit:xmlunit-core:2.6.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/xmlunit/xmlunit-core/2.6.2/xmlunit-core-2.6.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.yaml:snakeyaml:1.23.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/yaml/snakeyaml/1.23/snakeyaml-1.23.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <fileset dir="${javac2.home}">
+      <include name="javac2.jar"/>
+      <include name="jdom.jar"/>
+      <include name="asm-all*.jar"/>
+      <include name="forms-*.jar"/>
+    </fileset>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_fly-app-backend.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.fly-app-backend, clean.artifact.fly-app-backend:war_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.fly-app-backend" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.fly-app-backend:war" value="${basedir}/target"/>
+    <property name="artifact.output.fly-app-backend:war_exploded" value="${basedir}/target/fly-app-backend-0.0.1-SNAPSHOT"/>
+    <property name="artifact.output.fly-app-war" value="${basedir}/out/artifacts/fly_app_war"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.fly-app-backend-0.0.1-SNAPSHOT.war" value="${artifacts.temp.dir}/fly-app-backend-0.0.1-SNAPSHOT.war"/>
+    <property name="temp.jar.path.fly-app-war.war" value="${artifacts.temp.dir}/fly-app-war.war"/>
+  </target>
+  
+  <target name="clean.artifact.fly-app-backend:war_exploded" description="clean fly-app-backend:war exploded artifact output">
+    <delete dir="${artifact.output.fly-app-backend:war_exploded}"/>
+  </target>
+  
+  <target name="artifact.fly-app-backend:war" depends="init.artifacts, artifact.fly-app-backend:war_exploded" description="Build &#39;fly-app-backend:war&#39; artifact">
+    <property name="artifact.temp.output.fly-app-backend:war" value="${artifacts.temp.dir}/fly_app_backend_war"/>
+    <mkdir dir="${artifact.temp.output.fly-app-backend:war}"/>
+    <zip destfile="${temp.jar.path.fly-app-backend-0.0.1-SNAPSHOT.war}">
+      <zipfileset dir="${artifact.temp.output.fly-app-backend:war_exploded}"/>
+    </zip>
+    <copy file="${temp.jar.path.fly-app-backend-0.0.1-SNAPSHOT.war}" tofile="${artifact.temp.output.fly-app-backend:war}/fly-app-backend-0.0.1-SNAPSHOT.war"/>
+  </target>
+  
+  <target name="artifact.fly-app-backend:war_exploded" depends="init.artifacts, compile.module.fly-app-backend" description="Build &#39;fly-app-backend:war exploded&#39; artifact">
+    <mkdir dir="${artifact.output.fly-app-backend:war_exploded}"/>
+    <mkdir dir="${artifact.output.fly-app-backend:war_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/classes">
+      <fileset dir="${fly-app-backend.output.dir}"/>
+    </copy>
+    <mkdir dir="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-data-rest/2.1.6.RELEASE/spring-boot-starter-data-rest-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-data-rest-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/data/spring-data-rest-webmvc/3.1.9.RELEASE/spring-data-rest-webmvc-3.1.9.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-data-rest-webmvc-3.1.9.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/data/spring-data-rest-core/3.1.9.RELEASE/spring-data-rest-core-3.1.9.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-data-rest-core-3.1.9.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/hateoas/spring-hateoas/0.25.1.RELEASE/spring-hateoas-0.25.1.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-hateoas-0.25.1.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/plugin/spring-plugin-core/1.2.0.RELEASE/spring-plugin-core-1.2.0.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-plugin-core-1.2.0.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/atteo/evo-inflector/1.2.2/evo-inflector-1.2.2.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/evo-inflector-1.2.2.jar"/>
+    <copy file="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-databind/2.9.9/jackson-databind-2.9.9.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jackson-databind-2.9.9.jar"/>
+    <copy file="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-core/2.9.9/jackson-core-2.9.9.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jackson-core-2.9.9.jar"/>
+    <copy file="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jackson-annotations-2.9.0.jar"/>
+    <copy file="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.7.26/slf4j-api-1.7.26.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/slf4j-api-1.7.26.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-thymeleaf/2.1.6.RELEASE/spring-boot-starter-thymeleaf-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-thymeleaf-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter/2.1.6.RELEASE/spring-boot-starter-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-logging/2.1.6.RELEASE/spring-boot-starter-logging-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-logging-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/logback-classic-1.2.3.jar"/>
+    <copy file="${path.variable.maven_repository}/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/logback-core-1.2.3.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-to-slf4j/2.11.2/log4j-to-slf4j-2.11.2.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/log4j-to-slf4j-2.11.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/logging/log4j/log4j-api/2.11.2/log4j-api-2.11.2.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/log4j-api-2.11.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/slf4j/jul-to-slf4j/1.7.26/jul-to-slf4j-1.7.26.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jul-to-slf4j-1.7.26.jar"/>
+    <copy file="${path.variable.maven_repository}/org/yaml/snakeyaml/1.23/snakeyaml-1.23.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/snakeyaml-1.23.jar"/>
+    <copy file="${path.variable.maven_repository}/org/thymeleaf/thymeleaf-spring5/3.0.11.RELEASE/thymeleaf-spring5-3.0.11.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/thymeleaf-spring5-3.0.11.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/thymeleaf/thymeleaf/3.0.11.RELEASE/thymeleaf-3.0.11.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/thymeleaf-3.0.11.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/attoparser/attoparser/2.0.5.RELEASE/attoparser-2.0.5.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/attoparser-2.0.5.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/unbescape-1.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/thymeleaf/extras/thymeleaf-extras-java8time/3.0.4.RELEASE/thymeleaf-extras-java8time-3.0.4.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/thymeleaf-extras-java8time-3.0.4.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-web/2.1.6.RELEASE/spring-boot-starter-web-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-web-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-json/2.1.6.RELEASE/spring-boot-starter-json-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-json-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.9.9/jackson-datatype-jdk8-2.9.9.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jackson-datatype-jdk8-2.9.9.jar"/>
+    <copy file="${path.variable.maven_repository}/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.9.9/jackson-datatype-jsr310-2.9.9.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jackson-datatype-jsr310-2.9.9.jar"/>
+    <copy file="${path.variable.maven_repository}/com/fasterxml/jackson/module/jackson-module-parameter-names/2.9.9/jackson-module-parameter-names-2.9.9.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jackson-module-parameter-names-2.9.9.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/validator/hibernate-validator/6.0.17.Final/hibernate-validator-6.0.17.Final.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/hibernate-validator-6.0.17.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/validation-api-2.0.1.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jboss-logging-3.3.2.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/com/fasterxml/classmate/1.4.0/classmate-1.4.0.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/classmate-1.4.0.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-web/5.1.8.RELEASE/spring-web-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-web-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-beans/5.1.8.RELEASE/spring-beans-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-beans-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-webmvc-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-aop/5.1.8.RELEASE/spring-aop-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-aop-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-context/5.1.8.RELEASE/spring-context-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-context-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-expression/5.1.8.RELEASE/spring-expression-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-expression-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-web-services/2.1.6.RELEASE/spring-boot-starter-web-services-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-web-services-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/com/sun/xml/messaging/saaj/saaj-impl/1.5.0/saaj-impl-1.5.0.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/saaj-impl-1.5.0.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/xml/soap/javax.xml.soap-api/1.4.0/javax.xml.soap-api-1.4.0.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/javax.xml.soap-api-1.4.0.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jvnet/mimepull/mimepull/1.9.11/mimepull-1.9.11.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/mimepull-1.9.11.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jvnet/staxex/stax-ex/1.8/stax-ex-1.8.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/stax-ex-1.8.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/xml/ws/jaxws-api/2.3.1/jaxws-api-2.3.1.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jaxws-api-2.3.1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-oxm/5.1.8.RELEASE/spring-oxm-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-oxm-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/ws/spring-ws-core/3.0.7.RELEASE/spring-ws-core-3.0.7.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-ws-core-3.0.7.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/ws/spring-xml/3.0.7.RELEASE/spring-xml-3.0.7.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-xml-3.0.7.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-io/commons-io/2.5/commons-io-2.5.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/commons-io-2.5.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot/2.1.6.RELEASE/spring-boot-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-autoconfigure/2.1.6.RELEASE/spring-boot-autoconfigure-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-autoconfigure-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/mysql-connector-java-8.0.16.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/javax.annotation-api-1.3.2.jar"/>
+    <copy file="${path.variable.maven_repository}/net/bytebuddy/byte-buddy/1.9.13/byte-buddy-1.9.13.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/byte-buddy-1.9.13.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-core/5.1.8.RELEASE/spring-core-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-core-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-jcl/5.1.8.RELEASE/spring-jcl-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-jcl-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-data-jpa/2.1.6.RELEASE/spring-boot-starter-data-jpa-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-data-jpa-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-aop/2.1.6.RELEASE/spring-boot-starter-aop-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-aop-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/aspectjweaver-1.9.4.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/boot/spring-boot-starter-jdbc/2.1.6.RELEASE/spring-boot-starter-jdbc-2.1.6.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-boot-starter-jdbc-2.1.6.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/com/zaxxer/HikariCP/3.2.0/HikariCP-3.2.0.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/HikariCP-3.2.0.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-jdbc/5.1.8.RELEASE/spring-jdbc-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-jdbc-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/transaction/javax.transaction-api/1.3/javax.transaction-api-1.3.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/javax.transaction-api-1.3.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jaxb-api-2.3.1.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/javax.activation-api-1.2.0.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-core/5.3.10.Final/hibernate-core-5.3.10.Final.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/hibernate-core-5.3.10.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/javax.persistence-api-2.2.jar"/>
+    <copy file="${path.variable.maven_repository}/org/javassist/javassist/3.23.2-GA/javassist-3.23.2-GA.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/javassist-3.23.2-GA.jar"/>
+    <copy file="${path.variable.maven_repository}/antlr/antlr/2.7.7/antlr-2.7.7.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/antlr-2.7.7.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jboss/jandex/2.0.5.Final/jandex-2.0.5.Final.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/jandex-2.0.5.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/dom4j/dom4j/2.1.1/dom4j-2.1.1.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/dom4j-2.1.1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/common/hibernate-commons-annotations/5.0.4.Final/hibernate-commons-annotations-5.0.4.Final.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/hibernate-commons-annotations-5.0.4.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/data/spring-data-jpa/2.1.9.RELEASE/spring-data-jpa-2.1.9.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-data-jpa-2.1.9.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/data/spring-data-commons/2.1.9.RELEASE/spring-data-commons-2.1.9.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-data-commons-2.1.9.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-orm/5.1.8.RELEASE/spring-orm-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-orm-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-tx/5.1.8.RELEASE/spring-tx-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-tx-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-aspects/5.1.8.RELEASE/spring-aspects-5.1.8.RELEASE.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/spring-aspects-5.1.8.RELEASE.jar"/>
+    <copy file="${path.variable.maven_repository}/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar" tofile="${artifact.output.fly-app-backend:war_exploded}/WEB-INF/lib/assertj-core-3.11.1.jar"/>
+    <mkdir dir="${artifact.output.fly-app-backend:war_exploded}/META-INF"/>
+    <copy file="${basedir}/target/fly-app-backend-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" tofile="${artifact.output.fly-app-backend:war_exploded}/META-INF/MANIFEST.MF"/>
+    <copy todir="${artifact.output.fly-app-backend:war_exploded}">
+      <fileset dir="${basedir}/src/main/webapp"/>
+    </copy>
+  </target>
+  
+  <target name="artifact.fly-app-war" depends="init.artifacts" description="Build &#39;fly-app-war&#39; artifact">
+    <property name="artifact.temp.output.fly-app-war" value="${artifacts.temp.dir}/fly_app_war"/>
+    <mkdir dir="${artifact.temp.output.fly-app-war}"/>
+    <zip destfile="${temp.jar.path.fly-app-war.war}">
+      <zipfileset file="${basedir}/src/main/java/META-INF/MANIFEST.MF" prefix="META-INF"/>
+    </zip>
+    <copy file="${temp.jar.path.fly-app-war.war}" tofile="${artifact.temp.output.fly-app-war}/fly-app-war.war"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.fly-app-backend:war, artifact.fly-app-backend:war_exploded, artifact.fly-app-war" description="Build all artifacts">
+    <mkdir dir="${artifact.output.fly-app-backend:war}"/>
+    <copy todir="${artifact.output.fly-app-backend:war}">
+      <fileset dir="${artifact.temp.output.fly-app-backend:war}"/>
+    </copy>
+    <mkdir dir="${artifact.output.fly-app-war}"/>
+    <copy todir="${artifact.output.fly-app-war}">
+      <fileset dir="${artifact.temp.output.fly-app-war}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

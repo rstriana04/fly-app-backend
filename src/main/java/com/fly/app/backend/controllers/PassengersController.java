@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 @Slf4j
 @RequestMapping("/api/v1/passengers")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("http://localhost:4300")
 public class PassengersController {
 
     @Autowired

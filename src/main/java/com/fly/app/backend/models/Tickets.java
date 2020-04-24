@@ -1,7 +1,5 @@
 package com.fly.app.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 
 @Entity
